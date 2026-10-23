@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherForecast Pro - Parashikimi i Motit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <link rel="shortcut icon" href="img/icon/images-removebg-preview.png" type="image/x-icon">
+</head>
+<body>
+
+    <!-- ================= NAVIGATION BAR ================= -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Weather<span>Pro</span></a>
+            <ul class="nav-links">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Kryefaqja</a></li>
+                <li><a href="forecast.html"><i class="fas fa-cloud-sun"></i> Moti Live</a></li>
+                <li><a href="#features"><i class="fas fa-star"></i> Karakteristikat</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> Rreth Nesh</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Parashikime të Sakta <span>për Çdo Lokacion</span></h1>
+                <p class="subtitle">Merrni përditësime në kohë reale, alarme për motin ekstrem dhe parashikime 5-ditore me sistemin tonë profesional të ndjekjes së motit.</p>
+                <div class="cta-buttons">
+                    <a href="forecast.html" class="btn primary"><i class="fas fa-bolt"></i> Shiko Parashikimin Live</a>
+                    <a href="#features" class="btn secondary"><i class="fas fa-play-circle"></i> Si Funksionon</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/icon/images-removebg-preview.png" alt="Weather App">
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= FEATURES SECTION ================= -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Karakteristikat <span>Tona</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Bazuar në Lokacion</h3>
+                    <p>Zbulim automatik i lokacionit tuaj për raporte të personalizuara dhe të sakta të motit.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Alarme në Kohë Reale</h3>
+                    <p>Merrni njoftime të menjëhershme për kushtet e rënda të motit në zonën tuaj.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analiza të Detajuara</h3>
+                    <p>Parashikime orare dhe 5-ditore me grafikë interaktivë dhe metrika të detajuara.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DASHBOARD PREVIEW (ME VIDEO) ================= -->
+    <section class="dashboard-preview" id="about">
+        <div class="container">
+            <div class="preview-content">
+                <h2>Paneli Interaktiv <span>i Motit</span></h2>
+                <p>Paneli ynë profesional ofron të gjitha informacionet e motit që ju nevojiten me një shikim të vetëm, me widget-e të personalizueshme dhe metrika të detajuara.</p>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Hartat e nxehtësisë së temperaturës</li>
+                    <li><i class="fas fa-check-circle"></i> Probabiliteti i reshjeve</li>
+                    <li><i class="fas fa-check-circle"></i> Shpejtësia dhe drejtimi i erës</li>
+                    <li><i class="fas fa-check-circle"></i> Indeksi UV dhe cilësia e ajrit</li>
+                </ul>
+            </div>
+            
+            <!-- VIDEOJA E STILIZUAR -->
+            <div class="video-box">
+                <video autoplay muted loop playsinline>
+                    <source src="img/Untitled video (5).mp4" type="video/mp4">
+                    Shfletuesi juaj nuk mbështet elementin e videos.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CITY FORECAST TABLE ================= -->
+    <section class="city-forecast">
+        <div class="container">
+            <h2 class="section-title">Qytetet Kryesore <span>Parashikimi</span></h2>
+            <div class="table-responsive">
+                <table class="forecast-table">
+                    <thead>
+                        <tr>
+                            <th>Qyteti</th>
+                            <th>Temperatura</th>
+                            <th>Kushtet</th>
+                            <th>Lagështia</th>
+                            <th>Era</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><i class="fas fa-city"></i> Prishtina</td>
+                            <td>24°C / 75°F</td>
+                            <td><i class="fas fa-sun"></i> Me Diell</td>
+                            <td>45%</td>
+                            <td>12 km/h</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city"></i> Gjilan</td>
+                            <td>22°C / 72°F</td>
+                            <td><i class="fas fa-cloud-sun"></i> Pjesërisht me Re</td>
+                            <td>52%</td>
+                            <td>8 km/h</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city"></i> Peja</td>
+                            <td>20°C / 68°F</td>
+                            <td><i class="fas fa-cloud-rain"></i> Shi i Lehtë</td>
+                            <td>78%</td>
+                            <td>5 km/h</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-city"></i> Prizren</td>
+                            <td>26°C / 79°F</td>
+                            <td><i class="fas fa-sun"></i> Me Diell</td>
+                            <td>38%</td>
+                            <td>10 km/h</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Parashikimi i Motit</title>
+  <link rel="stylesheet" href="forecast.css">
+  <link rel="shortcut icon" href="img/weather-icon-logo-illustration-cloud-with-sun-symbol-template-for-graphic-and-web-design-collection-free-vector.jpg" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="app-body">
+
+  <!-- EKRANI I MIRËSEARDHJES -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <div class="splash-animation">
+        <i class="fas fa-sun sun-anim"></i>
+        <i class="fas fa-cloud cloud-anim"></i>
+      </div>
+      <h2 class="splash-title">Weather Pro</h2>
+      <p class="splash-text" id="splash-text">Duke zbuluar lokacionin tuaj...</p>
+    </div>
+  </div>
+
+  <div class="weather-container">
+    <header class="weather-header">
+      <h1 id="header-title">Parashikimi i Motit</h1>
+      <div class="weather-icon-header">
+        <img src="img/icon/images-removebg-preview.png" alt="Weather Icon">
+      </div>
+    </header>
+
+    <!-- LOADING SPINNER -->
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+      <div class="spinner"></div>
+      <p id="loading-text">Duke u lidhur me satelitin...</p>
+    </div>
+    
+    <main class="weather-main">
+      <form id="weatherForm" class="weather-form" style="display: none; position: relative;">
+        <div class="input-group">
+          <input type="text" id="cityInput" placeholder="Shkruani emrin e qytetit" autocomplete="off" required>
+          <button type="submit" id="search-btn">Kërko <i class="fas fa-search"></i></button>
+        <button type="button" id="myLocationBtn" class="btn-location" title="Përdor Lokacionin Tim" aria-label="Përdor Lokacionin Tim">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="7"></circle>
+    <circle cx="12" cy="12" r="2"></circle>
+    <line x1="12" y1="1" x2="12" y2="5"></line>
+    <line x1="12" y1="19" x2="12" y2="23"></line>
+    <line x1="1" y1="12" x2="5" y2="12"></line>
+    <line x1="19" y1="12" x2="23" y2="12"></line>
+  </svg>
+</button>
+        </div>
+        
+        <ul id="suggestionsList" class="suggestions-list" style="display: none;"></ul>
+
+        <select id="locationSelect" class="location-select" style="display: none;">
+          <option value="">Zgjidhni qytetin e saktë...</option>
+        </select>
+      </form>
+
+      <div class="weather-grid">
+        
+        <!-- Karta e Motit Aktual -->
+        <div id="weatherResult" class="weather-result" style="display: none;">
+          <div class="weather-card">
+            <h2 id="cityName">Duke kërkuar...</h2>
+            <p id="currentDateTime" class="date-time-display"></p>
+            
+            <div class="weather-details">
+              <div class="temp-icon">
+                <img src="img/icon/images-removebg-preview.png" id="weatherIcon" alt="Ikona e Motit Aktual">
+                <p id="temperature" class="temperature"></p>
+              </div>
+              <div class="other-info">
+                <p id="humidity"></p>
+                <p id="description"></p>
+                <p id="wind-speed"></p>
+                <p id="feels-like"></p>
+                <p id="sunrise"></p>
+                <p id="sunset"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Parashikimi 5-Ditor -->
+        <div id="forecastContainer" class="forecast-container" style="display: none;">
+          <h3 id="forecast-title">Parashikimi 5-Ditor</h3>
+          <div id="forecastList" class="forecast-list">
+            <!-- Ditët do të gjenerohen nga JavaScript -->
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="weather-footer">
+      <p id="footer-copy">&copy; <span id="year"></span> Parashikimi i Motit. Të gjitha të drejtat e rezervuara.</p>
+      <div class="btn">
+        <a href="home.html" id="home-link"><i class="fas fa-home"></i> Kthehu në Faqen Kryesore</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('weatherResult').style.display = 'none';
+      document.getElementById('forecastContainer').style.display = 'none';
+      document.getElementById('weatherForm').style.display = 'none';
+      
+      setTimeout(() => {
+        const splash = document.getElementById('splash-screen');
+        if(splash) {
+          splash.classList.add('hidden');
+          setTimeout(() => { 
+            splash.style.display = 'none'; 
+            document.getElementById('loadingIndicator').style.display = 'flex';
+          }, 800);
+        }
+      }, 2500);
+    });
+  </script>
+</body>
+</html>
