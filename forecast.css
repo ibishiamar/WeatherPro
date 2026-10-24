@@ -86,6 +86,21 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
 }
 
+/* --- NOSCRIPT --- */
+.noscript-msg {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: linear-gradient(160deg, #1d6fdc 0%, #4fb3f6 100%);
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* =========================================
    2. FORMULARI DHE KËRKIMI
    ========================================= */
@@ -228,8 +243,32 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
+/* --- KËRKIMET E FUNDIT --- */
+.recent-searches {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recent-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.recent-chip:hover {
+  background: var(--glass-strong);
+  transform: translateY(-2px);
+}
+
 /* =========================================
-   3. LOADING
+   3. LOADING DHE GABIMET
    ========================================= */
 .loading-indicator {
   display: flex;
@@ -241,24 +280,78 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
   animation: fadeIn 0.5s ease;
 }
 
-.spinner {
-  width: 48px;
-  height: 48px;
-  border: 4px solid rgba(255, 255, 255, 0.25);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.9s linear infinite;
-  margin-bottom: 16px;
-}
-
 .loading-indicator p {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-soft);
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+/* --- SKELETON --- */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 22px;
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.skeleton {
+  min-height: 300px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+/* --- MESAZHI I GABIMIT --- */
+.error-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 14px 18px;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-size: 0.95rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.error-banner i {
+  flex-shrink: 0;
+  color: #ffd166;
+  font-size: 1.1rem;
+}
+
+.error-banner span {
+  flex: 1;
+  min-width: 0;
+}
+
+.retry-btn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
 }
 
 /* =========================================
@@ -321,6 +414,66 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
 
 .date-time-display::first-letter {
   text-transform: uppercase;
+}
+
+/* --- BARA E VEGLAVE (përditësuar, refresh, °C/°F) --- */
+.card-tools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.updated-at {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+.tool-btn {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  background: var(--glass);
+  color: var(--text);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tool-btn:hover {
+  background: var(--glass-strong);
+  transform: rotate(90deg);
+}
+
+.unit-toggle {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: var(--glass);
+}
+
+.unit-toggle button {
+  padding: 4px 12px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.unit-toggle button.active {
+  background: #ffffff;
+  color: var(--accent);
 }
 
 .weather-details {
@@ -466,12 +619,74 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
 }
 
+/* Min / Max */
 .forecast-item .forecast-temp {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: 10px;
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--text);
-  min-width: 70px;
+  min-width: 90px;
   text-align: right;
+}
+
+.forecast-item .t-min {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--text-soft);
+}
+
+/* --- PARASHIKIMI SIPAS ORËVE --- */
+.forecast-container.hourly-container {
+  grid-column: 1 / -1;
+  height: auto;
+}
+
+.hourly-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+}
+
+.hourly-item {
+  flex: 0 0 auto;
+  min-width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.13);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+}
+
+.hourly-time {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+.hourly-icon {
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
+}
+
+.hourly-temp {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.hourly-pop {
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  min-height: 1.1em;
 }
 
 /* --- FOOTER --- */
@@ -513,6 +728,16 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
 .weather-footer .btn a:hover {
   background: var(--glass-strong);
   transform: translateY(-2px);
+}
+
+/* --- QASSHMËRIA: fokusi i tastierës --- */
+.tool-btn:focus-visible,
+.unit-toggle button:focus-visible,
+.recent-chip:focus-visible,
+.retry-btn:focus-visible,
+.weather-footer .btn a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 /* =========================================
@@ -605,14 +830,19 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
 }
 
 /* =========================================
-   6. RESPONSIVE
+   6. RESPONSIVE (gjithmonë në fund, që të fitojë mbi rregullat bazë)
    ========================================= */
 
 /* Tableta dhe celularë (deri në 850px) */
 @media (max-width: 850px) {
-  .weather-grid {
+  .weather-grid,
+  .skeleton-grid {
     grid-template-columns: minmax(0, 1fr);
     gap: 16px;
+  }
+
+  .skeleton {
+    min-height: 220px;
   }
 
   .weather-result,
@@ -669,6 +899,10 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
     padding: 0;
   }
 
+  .error-banner {
+    flex-wrap: wrap;
+  }
+
   .weather-card {
     padding: 26px 18px;
     border-radius: 24px;
@@ -711,6 +945,10 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
     font-size: 0.95rem;
   }
 
+  .forecast-item .forecast-temp {
+    min-width: 84px;
+  }
+
   .weather-footer {
     margin-top: 24px;
   }
@@ -739,5 +977,18 @@ body.bg-night  { background: linear-gradient(160deg, #0b1026 0%, #1b2a4e 55%, #2
 @media (hover: none) {
   .forecast-item:hover {
     background: transparent;
+  }
+}
+
+/* Përdoruesit që preferojnë më pak lëvizje (në fund, që të mbizotërojë) */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .splash-content,
+  .splash-animation .sun-anim,
+  .splash-animation .cloud-anim,
+  .splash-text,
+  .loading-indicator,
+  .weather-grid {
+    animation: none;
   }
 }

@@ -4,42 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WeatherForecast Pro - Parashikimi i Motit</title>
+    <meta name="description" content="Parashikim moti në kohë reale: temperatura, parashikimi sipas orëve dhe 5-ditor për çdo qytet.">
+    <meta name="theme-color" content="#1c7ed6">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="WeatherForecast Pro - Parashikimi i Motit">
+    <meta property="og:description" content="Parashikim moti në kohë reale: temperatura, parashikimi sipas orëve dhe 5-ditor për çdo qytet.">
+    <meta property="og:image" content="img/icon/images-removebg-preview.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home.css">
-    <link rel="shortcut icon" href="img/icon/images-removebg-preview.png" type="image/x-icon">
+    <link rel="stylesheet" href="home-extra.css">
+    <link rel="icon" href="img/icon/images-removebg-preview.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icon/images-removebg-preview.png">
 </head>
-<body>
+<body id="top">
+
+    <a href="#main" class="skip-link">Kalo te përmbajtja</a>
 
     <!-- ================= NAVIGATION BAR ================= -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Navigimi kryesor">
         <div class="container">
-            <a href="#" class="logo">Weather<span>Pro</span></a>
+            <a href="#top" class="logo">Weather<span>Pro</span></a>
             <ul class="nav-links">
-                <li><a href="#" class="active"><i class="fas fa-home"></i> Kryefaqja</a></li>
+                <li><a href="#top" class="active" aria-current="page" data-spy="top"><i class="fas fa-home"></i> Kryefaqja</a></li>
                 <li><a href="forecast.html"><i class="fas fa-cloud-sun"></i> Moti Live</a></li>
-                <li><a href="#features"><i class="fas fa-star"></i> Karakteristikat</a></li>
-                <li><a href="#about"><i class="fas fa-info-circle"></i> Rreth Nesh</a></li>
+                <li><a href="#features" data-spy="features"><i class="fas fa-star"></i> Karakteristikat</a></li>
+                <li><a href="#about" data-spy="about"><i class="fas fa-info-circle"></i> Rreth Nesh</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- ================= HERO SECTION ================= -->
-    <header class="hero">
+    <header class="hero" id="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>Parashikime të Sakta <span>për Çdo Lokacion</span></h1>
-                <p class="subtitle">Merrni përditësime në kohë reale, alarme për motin ekstrem dhe parashikime 5-ditore me sistemin tonë profesional të ndjekjes së motit.</p>
+                <p class="subtitle">Merrni përditësime në kohë reale, parashikime sipas orëve dhe 5-ditore me sistemin tonë profesional të ndjekjes së motit.</p>
                 <div class="cta-buttons">
                     <a href="forecast.html" class="btn primary"><i class="fas fa-bolt"></i> Shiko Parashikimin Live</a>
-                    <a href="#features" class="btn secondary"><i class="fas fa-play-circle"></i> Si Funksionon</a>
+                    <a href="#how" class="btn secondary"><i class="fas fa-play-circle"></i> Si Funksionon</a>
                 </div>
+
+                <!-- Moti tani në lokacionin e përdoruesit (mbushet nga home.js) -->
+                <a href="forecast.html" id="liveCard" class="live-card" hidden aria-live="polite">
+                    <img id="liveIcon" src="img/icon/images-removebg-preview.png" alt="">
+                    <div class="live-info">
+                        <span class="live-label">Moti tani</span>
+                        <strong id="liveCity"></strong>
+                        <span id="liveDesc"></span>
+                    </div>
+                    <span id="liveTemp" class="live-temp"></span>
+                </a>
             </div>
             <div class="hero-image">
                 <img src="img/icon/images-removebg-preview.png" alt="Weather App">
             </div>
         </div>
     </header>
+
+    <main id="main">
 
     <!-- ================= FEATURES SECTION ================= -->
     <section id="features" class="features">
@@ -55,39 +80,64 @@
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-bell"></i>
+                        <i class="fas fa-gauge-high"></i>
                     </div>
-                    <h3>Alarme në Kohë Reale</h3>
-                    <p>Merrni njoftime të menjëhershme për kushtet e rënda të motit në zonën tuaj.</p>
+                    <h3>Detaje të Plota</h3>
+                    <p>Lagështia, era, presioni, dukshmëria, indeksi UV dhe gjasat për reshje, të gjitha në një vend.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <h3>Analiza të Detajuara</h3>
-                    <p>Parashikime orare dhe 5-ditore me grafikë interaktivë dhe metrika të detajuara.</p>
+                    <p>Parashikime sipas orëve dhe 5-ditore me temperaturë minimale dhe maksimale, në °C ose °F.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ================= SI FUNKSIONON ================= -->
+    <section id="how" class="how">
+        <div class="container">
+            <h2 class="section-title">Si <span>Funksionon</span></h2>
+            <ol class="steps">
+                <li class="step">
+                    <span class="step-num">1</span>
+                    <h3>Zbulo lokacionin</h3>
+                    <p>Lejo qasjen te lokacioni ose kërko drejtpërdrejt emrin e qytetit.</p>
+                </li>
+                <li class="step">
+                    <span class="step-num">2</span>
+                    <h3>Zgjidh qytetin</h3>
+                    <p>Sugjerimet shfaqen sapo të shkruash, dhe qytetet e fundit ruhen për herën tjetër.</p>
+                </li>
+                <li class="step">
+                    <span class="step-num">3</span>
+                    <h3>Shiko parashikimin</h3>
+                    <p>Merr motin aktual, parashikimin orar dhe atë 5-ditor në një ekran të vetëm.</p>
+                </li>
+            </ol>
+        </div>
+    </section>
+
     <!-- ================= DASHBOARD PREVIEW (ME VIDEO) ================= -->
-    <section class="dashboard-preview" id="about">
+    <section class="dashboard-preview" id="demo">
         <div class="container">
             <div class="preview-content">
                 <h2>Paneli Interaktiv <span>i Motit</span></h2>
-                <p>Paneli ynë profesional ofron të gjitha informacionet e motit që ju nevojiten me një shikim të vetëm, me widget-e të personalizueshme dhe metrika të detajuara.</p>
+                <p>Paneli ynë profesional ofron të gjitha informacionet e motit që ju nevojiten me një shikim të vetëm, me metrika të detajuara dhe përditësim me një klikim.</p>
                 <ul class="feature-list">
-                    <li><i class="fas fa-check-circle"></i> Hartat e nxehtësisë së temperaturës</li>
+                    <li><i class="fas fa-check-circle"></i> Parashikimi sipas orëve për 24 orët e ardhshme</li>
                     <li><i class="fas fa-check-circle"></i> Probabiliteti i reshjeve</li>
-                    <li><i class="fas fa-check-circle"></i> Shpejtësia dhe drejtimi i erës</li>
-                    <li><i class="fas fa-check-circle"></i> Indeksi UV dhe cilësia e ajrit</li>
+                    <li><i class="fas fa-check-circle"></i> Shpejtësia e erës dhe presioni</li>
+                    <li><i class="fas fa-check-circle"></i> Indeksi UV dhe dukshmëria</li>
                 </ul>
             </div>
-            
+
             <!-- VIDEOJA E STILIZUAR -->
+            <!-- Riemërto skedarin në img/weather-demo.mp4 (pa hapësira dhe kllapa) -->
             <div class="video-box">
-                <video autoplay muted loop playsinline>
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Demonstrim i panelit të motit">
                     <source src="img/Untitled video (5).mp4" type="video/mp4">
                     Shfletuesi juaj nuk mbështet elementin e videos.
                 </video>
@@ -96,53 +146,128 @@
     </section>
 
     <!-- ================= CITY FORECAST TABLE ================= -->
-    <section class="city-forecast">
+    <section class="city-forecast" id="cities">
         <div class="container">
             <h2 class="section-title">Qytetet Kryesore <span>Parashikimi</span></h2>
             <div class="table-responsive">
-                <table class="forecast-table">
+                <table class="forecast-table" id="cityTable">
+                    <caption class="sr-only">Moti aktual në qytetet kryesore</caption>
                     <thead>
                         <tr>
-                            <th>Qyteti</th>
-                            <th>Temperatura</th>
-                            <th>Kushtet</th>
-                            <th>Lagështia</th>
-                            <th>Era</th>
+                            <th scope="col">Qyteti</th>
+                            <th scope="col">Temperatura</th>
+                            <th scope="col">Kushtet</th>
+                            <th scope="col">Lagështia</th>
+                            <th scope="col">Era</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr data-lat="42.6629" data-lon="21.1655">
                             <td><i class="fas fa-city"></i> Prishtina</td>
-                            <td>24°C / 75°F</td>
-                            <td><i class="fas fa-sun"></i> Me Diell</td>
-                            <td>45%</td>
-                            <td>12 km/h</td>
+                            <td class="c-temp skeleton-cell">—</td>
+                            <td class="c-cond skeleton-cell">—</td>
+                            <td class="c-hum skeleton-cell">—</td>
+                            <td class="c-wind skeleton-cell">—</td>
                         </tr>
-                        <tr>
+                        <tr data-lat="42.4635" data-lon="21.4694">
                             <td><i class="fas fa-city"></i> Gjilan</td>
-                            <td>22°C / 72°F</td>
-                            <td><i class="fas fa-cloud-sun"></i> Pjesërisht me Re</td>
-                            <td>52%</td>
-                            <td>8 km/h</td>
+                            <td class="c-temp skeleton-cell">—</td>
+                            <td class="c-cond skeleton-cell">—</td>
+                            <td class="c-hum skeleton-cell">—</td>
+                            <td class="c-wind skeleton-cell">—</td>
                         </tr>
-                        <tr>
+                        <tr data-lat="42.6593" data-lon="20.2883">
                             <td><i class="fas fa-city"></i> Peja</td>
-                            <td>20°C / 68°F</td>
-                            <td><i class="fas fa-cloud-rain"></i> Shi i Lehtë</td>
-                            <td>78%</td>
-                            <td>5 km/h</td>
+                            <td class="c-temp skeleton-cell">—</td>
+                            <td class="c-cond skeleton-cell">—</td>
+                            <td class="c-hum skeleton-cell">—</td>
+                            <td class="c-wind skeleton-cell">—</td>
                         </tr>
-                        <tr>
+                        <tr data-lat="42.2139" data-lon="20.7397">
                             <td><i class="fas fa-city"></i> Prizren</td>
-                            <td>26°C / 79°F</td>
-                            <td><i class="fas fa-sun"></i> Me Diell</td>
-                            <td>38%</td>
-                            <td>10 km/h</td>
+                            <td class="c-temp skeleton-cell">—</td>
+                            <td class="c-cond skeleton-cell">—</td>
+                            <td class="c-hum skeleton-cell">—</td>
+                            <td class="c-wind skeleton-cell">—</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <p id="tableNote" class="table-note" role="status">Duke ngarkuar të dhënat...</p>
         </div>
     </section>
+
+    <!-- ================= RRETH NESH ================= -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Rreth <span>Nesh</span></h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>WeatherPro është një aplikacion moti i ndërtuar me HTML, CSS dhe JavaScript. Qëllimi është që parashikimi të jetë i shpejtë, i qartë dhe i lehtë për t'u lexuar në çdo pajisje.</p>
+                    <p>Të dhënat vijnë nga OpenWeather dhe Open-Meteo. Nuk kërkohet regjistrim për ta përdorur.</p>
+                </div>
+                <ul class="about-points">
+                    <li><i class="fas fa-database"></i> Të dhëna nga OpenWeather</li>
+                    <li><i class="fas fa-mobile-screen"></i> Punon në telefon, tabletë dhe kompjuter</li>
+                    <li><i class="fas fa-user-check"></i> Pa regjistrim</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Pyetje <span>të Shpeshta</span></h2>
+            <div class="faq-list">
+                <details>
+                    <summary>Nga vijnë të dhënat e motit?</summary>
+                    <p>Nga OpenWeather për motin aktual dhe parashikimin, dhe nga Open-Meteo për indeksin UV.</p>
+                </details>
+                <details>
+                    <summary>Sa të sakta janë parashikimet?</summary>
+                    <p>Janë vlerësime. Janë më të besueshme për orët dhe ditët e para, dhe pasiguria rritet për ditët e largëta.</p>
+                </details>
+                <details>
+                    <summary>A kërkohet regjistrim?</summary>
+                    <p>Jo. Hapni "Moti Live" dhe kërkoni qytetin ose përdorni lokacionin tuaj.</p>
+                </details>
+                <details>
+                    <summary>Si e ndryshoj njësinë e temperaturës?</summary>
+                    <p>Te "Moti Live", përdorni butonat °C dhe °F në kartën e motit. Zgjedhja ruhet për herën tjetër.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#top" class="logo">Weather<span>Pro</span></a>
+                    <p class="footer-text">Parashikime moti të qarta dhe të shpejta për çdo lokacion.</p>
+                </div>
+                <nav aria-label="Lidhjet e footer-it">
+                    <ul class="footer-links">
+                        <li><a href="#top">Kryefaqja</a></li>
+                        <li><a href="forecast.html">Moti Live</a></li>
+                        <li><a href="#features">Karakteristikat</a></li>
+                        <li><a href="#about">Rreth Nesh</a></li>
+                        <li><a href="#faq">Pyetje të shpeshta</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <p class="footer-copy">&copy; <span id="footerYear"></span> WeatherForecast Pro. Të gjitha të drejtat e rezervuara. Të dhënat: OpenWeather.</p>
+        </div>
+    </footer>
+
+    <button type="button" id="toTop" class="to-top" aria-label="Kthehu lart"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+    <noscript><p class="noscript-note">Disa pjesë (moti live dhe tabela e qyteteve) kërkojnë JavaScript.</p></noscript>
+
+    <script src="home.js"></script>
 </body>
 </html>
